@@ -1,66 +1,45 @@
-const quotes = [
-    "Typing fast requires practice and focus.",
-    "Speed and accuracy both matter in typing tests.",
+let timeLeft = 30;
+let timer;
+let isTyping = false;
+
+const timerDisplay = document.getElementById("time");
+const textDisplay = document.getElementById("text-display");
+const inputArea = document.getElementById("input-area");
+const startBtn = document.getElementById("start-btn");
+const timeSelect = document.getElementById("time-select");
+
+const textSamples = [
     "The quick brown fox jumps over the lazy dog.",
-    "Programming is like typing but with problem solving.",
-    "Consistent practice improves your typing speed."
+    "Typing fast is a skill you can improve.",
+    "Practice makes perfect when learning to type.",
+    "Accuracy is more important than speed at first."
 ];
 
-let timerDisplay = document.getElementById("timer");
-let quoteDisplay = document.getElementById("quote");
-let inputArea = document.getElementById("inputArea");
-let startBtn = document.getElementById("startBtn");
-let timeSelect = document.getElementById("timeSelect");
-let resultDisplay = document.getElementById("result");
-
-let timeLeft, timer, currentQuote;
-
-startBtn.addEventListener("click", startTest);
-
 function startTest() {
-    timeLeft = parseInt(timeSelect.value);
-    timerDisplay.textContent = `Time: ${timeLeft}`;
+    let randomText = textSamples[Math.floor(Math.random() * textSamples.length)];
+    textDisplay.textContent = randomText;
     inputArea.value = "";
     inputArea.disabled = false;
     inputArea.focus();
-    resultDisplay.textContent = "";
 
-    // Show random quote
-    currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteDisplay.textContent = currentQuote;
+    timeLeft = parseInt(timeSelect.value);
+    timerDisplay.textContent = timeLeft;
+    isTyping = true;
 
     clearInterval(timer);
     timer = setInterval(updateTimer, 1000);
 }
 
 function updateTimer() {
-    timeLeft--;
-    timerDisplay.textContent = `Time: ${timeLeft}`;
-
-    if (timeLeft <= 0) {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+    } else {
         clearInterval(timer);
-        endTest();
+        isTyping = false;
+        inputArea.disabled = true;
+        alert("Time's up!");
     }
 }
 
-function endTest() {
-    inputArea.disabled = true;
-    let typedText = inputArea.value.trim();
-    let wordsTyped = typedText === "" ? 0 : typedText.split(/\s+/).length;
-
-    let accuracy = calculateAccuracy(currentQuote, typedText);
-    resultDisplay.innerHTML = `⏱ Time's up!<br>✅ Words per minute: <b>${wordsTyped}</b><br>🎯 Accuracy: <b>${accuracy}%</b>`;
-}
-
-function calculateAccuracy(original, typed) {
-    let originalWords = original.split(" ");
-    let typedWords = typed.split(" ");
-    let correctCount = 0;
-
-    for (let i = 0; i < typedWords.length; i++) {
-        if (typedWords[i] === originalWords[i]) {
-            correctCount++;
-        }
-    }
-    return Math.round((correctCount / originalWords.length) * 100);
-}
+startBtn.addEventListener("click", startTest);

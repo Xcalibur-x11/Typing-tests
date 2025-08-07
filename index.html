@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorful Typing Test</title>
+    <title>Typing Test</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>⏱ Typing Speed Test</h1>
+        <h1>Typing Test</h1>
 
-        <label for="timeSelect">Select Time:</label>
-        <select id="timeSelect">
-            <option value="10">10 seconds</option>
-            <option value="20">20 seconds</option>
-            <option value="30" selected>30 seconds</option>
-            <option value="40">40 seconds</option>
-            <option value="50">50 seconds</option>
-            <option value="60">60 seconds</option>
-        </select>
-
-        <p id="quote"></p>
-        <textarea id="input" placeholder="Start typing here..." disabled></textarea>
-
-        <div class="controls">
+        <div class="settings">
+            <label for="timeSelect">⏳ Select Time:</label>
+            <select id="timeSelect">
+                <option value="10">10 sec</option>
+                <option value="20">20 sec</option>
+                <option value="30">30 sec</option>
+                <option value="40">40 sec</option>
+                <option value="50">50 sec</option>
+                <option value="60">60 sec</option>
+            </select>
             <button id="startBtn">Start Test</button>
-            <p id="timer">Time: 0s</p>
         </div>
+
+        <div id="timer">Time: 0</div>
+        <div id="quote"></div>
+        <textarea id="inputArea" placeholder="Start typing here..." disabled></textarea>
 
         <div id="result"></div>
     </div>
