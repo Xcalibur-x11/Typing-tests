@@ -1,89 +1,38 @@
 const quotes = [
-  "Practice makes perfect.",
-  "Typing fast is fun and useful.",
-  "Never give up on learning.",
-  "Accuracy is more important than speed.",
-  "JavaScript powers the web."
+    "The quick brown fox jumps over the lazy dog",
+    "Typing fast requires practice and focus",
+    "JavaScript powers the interactive web",
+    "GitHub helps developers collaborate easily",
+    "Speed comes with accuracy and patience"
 ];
 
-let quote = "";
-let timer = 60;
-let interval = null;
-let started = false;
+let timeLeft;
+let timerInterval;
+let selectedTime;
+let quoteText;
+let startTime;
 
-const quoteDisplay = document.getElementById("quoteDisplay");
-const quoteInput = document.getElementById("quoteInput");
-const timerDisplay = document.getElementById("timer");
-const wpmDisplay = document.getElementById("wpm");
-const accuracyDisplay = document.getElementById("accuracy");
+const quoteElem = document.getElementById("quote");
+const inputElem = document.getElementById("input");
+const timerElem = document.getElementById("timer");
+const resultElem = document.getElementById("result");
+const startBtn = document.getElementById("startBtn");
+const timeSelect = document.getElementById("timeSelect");
 
-function getRandomQuote() {
-  return quotes[Math.floor(Math.random() * quotes.length)];
+function newQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteText = quotes[randomIndex];
+    quoteElem.textContent = quoteText;
 }
 
-function displayQuote() {
-  quote = getRandomQuote();
-  quoteDisplay.innerHTML = "";
-  quote.split("").forEach(char => {
-    const span = document.createElement("span");
-    span.innerText = char;
-    quoteDisplay.appendChild(span);
-  });
-}
+function startTest() {
+    selectedTime = parseInt(timeSelect.value);
+    timeLeft = selectedTime;
+    inputElem.value = "";
+    inputElem.disabled = false;
+    inputElem.focus();
+    resultElem.textContent = "";
+    newQuote();
 
-function startTimer() {
-  interval = setInterval(() => {
-    timer--;
-    timerDisplay.innerText = timer;
-    if (timer === 0) {
-      clearInterval(interval);
-      quoteInput.disabled = true;
-    }
-  }, 1000);
-}
-
-quoteInput.addEventListener("input", () => {
-  const input = quoteInput.value.split("");
-  const quoteChars = quoteDisplay.querySelectorAll("span");
-
-  let correct = 0;
-  quoteChars.forEach((charSpan, index) => {
-    const char = input[index];
-    if (char == null) {
-      charSpan.classList.remove("correct", "incorrect");
-    } else if (char === charSpan.innerText) {
-      charSpan.classList.add("correct");
-      charSpan.classList.remove("incorrect");
-      correct++;
-    } else {
-      charSpan.classList.add("incorrect");
-      charSpan.classList.remove("correct");
-    }
-  });
-
-  const accuracy = Math.round((correct / quote.length) * 100);
-  const wordsTyped = input.join("").split(" ").length;
-  const wpm = Math.round((wordsTyped / (60 - timer)) * 60) || 0;
-
-  accuracyDisplay.innerText = accuracy + "%";
-  wpmDisplay.innerText = wpm;
-
-  if (!started) {
-    started = true;
-    startTimer();
-  }
-});
-
-function restartTest() {
-  clearInterval(interval);
-  timer = 60;
-  started = false;
-  quoteInput.disabled = false;
-  quoteInput.value = "";
-  timerDisplay.innerText = timer;
-  wpmDisplay.innerText = 0;
-  accuracyDisplay.innerText = "100%";
-  displayQuote();
-}
-
-restartTest();
+    startTime = Date.now();
+    timerElem.textContent = `Time: ${timeLeft}s`;

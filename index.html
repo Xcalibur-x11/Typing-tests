@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Typing Test</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Typing Test</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Typing Test</h1>
-    <div id="quoteDisplay" class="quote-box"></div>
-    <textarea id="quoteInput" placeholder="Start typing..." autofocus></textarea>
+    <div class="container">
+        <h1>⏱ Typing Speed Test</h1>
 
-    <div class="stats">
-      <p>⏱ Time: <span id="timer">60</span>s</p>
-      <p>⚡ WPM: <span id="wpm">0</span></p>
-      <p>🎯 Accuracy: <span id="accuracy">100%</span></p>
+        <label for="timeSelect">Select Time:</label>
+        <select id="timeSelect">
+            <option value="10">10 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="40">40 seconds</option>
+            <option value="50">50 seconds</option>
+            <option value="60">60 seconds</option>
+        </select>
+
+        <p id="quote"></p>
+        <textarea id="input" placeholder="Start typing here..." disabled></textarea>
+
+        <div class="controls">
+            <button id="startBtn">Start Test</button>
+            <p id="timer">Time: 0s</p>
+        </div>
+
+        <div id="result"></div>
     </div>
 
-    <button onclick="restartTest()">Restart</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
