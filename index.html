@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Test</title>
+    <title>Typing Speed Test</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Typing Test</h1>
+        <h1>⚡ Typing Speed Test</h1>
+        <p class="subtitle">Test your speed and accuracy in real-time</p>
 
-        <div class="settings">
-            <label for="timeSelect">⏳ Select Time:</label>
-            <select id="timeSelect">
-                <option value="10">10 sec</option>
-                <option value="20">20 sec</option>
-                <option value="30">30 sec</option>
-                <option value="40">40 sec</option>
-                <option value="50">50 sec</option>
-                <option value="60">60 sec</option>
-            </select>
-            <button id="startBtn">Start Test</button>
+        <div class="test-box">
+            <p id="textDisplay"></p>
         </div>
 
-        <div id="timer">Time: 0</div>
-        <div id="quote"></div>
-        <textarea id="inputArea" placeholder="Start typing here..." disabled></textarea>
+        <textarea id="textInput" placeholder="Start typing here..."></textarea>
 
-        <div id="result"></div>
+        <div class="stats">
+            <p>Time Left: <span id="time">60</span>s</p>
+            <p>WPM: <span id="wpm">0</span></p>
+            <p>Accuracy: <span id="accuracy">100</span>%</p>
+        </div>
+
+        <button id="restartBtn">Restart Test</button>
     </div>
 
     <script src="script.js"></script>
