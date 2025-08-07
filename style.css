@@ -1,72 +1,57 @@
 body {
+    background-color: #1e1e1e; /* Dark Gray */
+    color: yellow;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 20px;
-    border-radius: 15px;
     text-align: center;
-    width: 400px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    padding: 20px;
 }
 
 h1 {
     color: yellow;
 }
 
-#quote {
-    font-size: 18px;
-    margin: 15px 0;
-    background: rgba(0,0,0,0.3);
-    padding: 10px;
-    border-radius: 10px;
+#timer {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: yellow;
 }
 
-textarea {
-    width: 100%;
-    height: 100px;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 10px;
-    outline: none;
-}
-
-#timeSelect {
+#timerSelect {
     padding: 5px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: none;
+    background-color: #333;
+    color: yellow;
+    border: 1px solid yellow;
 }
 
-.controls {
+#startBtn {
+    background-color: yellow;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
     margin-top: 10px;
 }
 
-button {
-    padding: 8px 16px;
-    background: limegreen;
+#startBtn:hover {
+    background-color: #ffdd00;
+}
+
+#sampleText {
+    margin: 20px 0;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
 }
 
-button:hover {
-    background: darkgreen;
-}
-
-#result {
-    margin-top: 15px;
-    font-weight: bold;
+#textInput {
+    width: 80%;
+    height: 100px;
+    margin-top: 10px;
+    background-color: black;
+    color: yellow;
+    border: 2px solid yellow;
+    padding: 10px;
+    font-size: 1rem;
 }
